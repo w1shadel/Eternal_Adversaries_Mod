@@ -1,0 +1,18 @@
+{
+  "item.eternal_adversaries.filed_barrier": "フィールドバリア生成器",
+  "block.eternal_adversaries.filed_barrier": "フィールドバリア生成器",
+  "item.eternal_adversaries.giant_door": "鍵のかかった大型のドア",
+  "block.eternal_adversaries.giant_door": "鍵のかかった大型のドア",
+  "item.eternal_adversaries.wand_of_barrier_item": "フィールドバリアの杖",
+  "item.eternal_adversaries.giant_door_summoner_3x3": "鍵付き大型ドア生成器(3x3)",
+  "item.eternal_adversaries.giant_door_summoner_2x3": "鍵付き大型ドア生成器(2x3)",
+  "itemGroup.eternal_adversaries.items": "永劫の宿敵のアイテム",
+  "item.eternal_adversaries.key": "光り輝く鍵",
+  "item.eternal_adversaries.key.desc1": "鍵のかかった大型のドアを開けられるかもしれない。",
+  "item.eternal_adversaries.wand_of_barrier.error": "杖はすでに埋まっています！シフト右クリックでリセットしてください！",
+  "item.eternal_adversaries.wand_of_barrier.set_barrier" : "位置をセットしました！フィールドバリア生成器に右クリックしてください！",
+  "item.eternal_adversaries.wand_of_barrier.pos1_set": "ポジション1が保存されました: ",
+  "item.eternal_adversaries.wand_of_barrier.pos2_set": "ポジション2が保存されました: ",
+  "item.eternal_adversaries.wand_of_barrier.reset":   "杖がリセットされた。",
+  "item.eternal_adversaries.wand_of_barrier.desc1": "フィールドバリアを生成できる杖、これを持った状態で保護したいエリア二点を選択し、フィールドバリア生成器に入れると保護エリアができる。シフト右クリックでリセット。"
+}

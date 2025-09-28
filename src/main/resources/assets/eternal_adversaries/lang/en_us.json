@@ -1,0 +1,8 @@
+{
+"item.eternal_adversaries.wand_of_barrier.error": "Wand is already full. Shift-right-click to reset.",
+  "item.eternal_adversaries.wand_of_barrier.set_barrier":"Range selected! Right-click a Field Generator to apply.",
+  "item.eternal_adversaries.wand_of_barrier.pos1_set": "Position 1 set to: ",
+  "item.eternal_adversaries.wand_of_barrier.pos2_set": "Position 2 set to: ",
+  "item.eternal_adversaries.wand_of_barrier.reset":   "Wand coordinates reset."
+
+}
