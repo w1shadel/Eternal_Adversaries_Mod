@@ -1,5 +1,6 @@
 package com.Maxwell.Eternal_Adversaries;
 
+import com.Maxwell.Eternal_Adversaries.world.ModProcessors;
 import com.Maxwell.Eternal_Adversaries.Register.ModBlockEntities;
 import com.Maxwell.Eternal_Adversaries.Register.ModBlocks;
 import com.Maxwell.Eternal_Adversaries.Register.ModEntities;
@@ -16,10 +17,12 @@ public class Eternal_Adversaries
     public static final String MODID = "eternal_adversaries";
     public Eternal_Adversaries(FMLJavaModLoadingContext context)
     {
-        IEventBus modEventBus = context.getModEventBus();
+
+        IEventBus modEventBus= context.getModEventBus();
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
+        ModProcessors.register(modEventBus);
     }
 }

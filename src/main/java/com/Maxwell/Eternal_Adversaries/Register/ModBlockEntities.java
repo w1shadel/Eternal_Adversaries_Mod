@@ -1,7 +1,7 @@
 package com.Maxwell.Eternal_Adversaries.Register;
 
 
-import com.Maxwell.Eternal_Adversaries.Entity.Misc.GiantDoorBlockEntity;
+import com.Maxwell.Eternal_Adversaries.Entity.Misc.FiledBarrier.FieldGeneratorBlockEntity;
 import com.Maxwell.Eternal_Adversaries.Entity.Misc.LockedDoorBlockEntity;
 import com.Maxwell.Eternal_Adversaries.Eternal_Adversaries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -19,14 +19,9 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(LockedDoorBlockEntity::new,
                             ModBlocks.LOCKED_DOOR.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<GiantDoorBlockEntity>> GIANT_DOOR =
-            BLOCK_ENTITIES.register("giant_door", () ->
-                    BlockEntityType.Builder.of(GiantDoorBlockEntity::new,
-                            ModBlocks.GIANT_DOOR.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<GiantDoorBlockEntity>> FILED_BARRIER =
+    public static final RegistryObject<BlockEntityType<FieldGeneratorBlockEntity>> FILED_BARRIER =
             BLOCK_ENTITIES.register("filed_barrier", () ->
-                    BlockEntityType.Builder.of(GiantDoorBlockEntity::new,
+                    BlockEntityType.Builder.of(FieldGeneratorBlockEntity::new,
                             ModBlocks.FILED_BARRIER.get()).build(null));
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

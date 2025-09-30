@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "#eternal_adversaries:has_structure/dangeon_1",
+  "biomes": "#minecraft:is_overworld",
   "start_pool": "eternal_adversaries:dangeon_1/start_pool",
   "size": 6,
   "max_distance_from_center": 72,

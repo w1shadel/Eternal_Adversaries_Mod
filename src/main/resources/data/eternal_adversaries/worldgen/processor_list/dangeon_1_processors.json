@@ -1,0 +1,10 @@
+{
+  "processors": [
+    {
+      "processor_type": "eternal_adversaries:field_generator_processor"
+    },
+    {
+      "processor_type": "eternal_adversaries:giant_door_processor"
+    }
+  ]
+}

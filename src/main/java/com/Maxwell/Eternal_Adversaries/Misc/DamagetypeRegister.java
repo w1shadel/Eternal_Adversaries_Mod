@@ -13,7 +13,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class DamagetypeRegister {
+    @SuppressWarnings("removal")
     public static final ResourceKey<DamageType> Volcanic_attack = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Eternal_Adversaries.MODID,"volcanic_attack"));
+    @SuppressWarnings("removal")
     public static final ResourceKey<DamageType> Meta_attack = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Eternal_Adversaries.MODID,"meta_attack"));
 
 

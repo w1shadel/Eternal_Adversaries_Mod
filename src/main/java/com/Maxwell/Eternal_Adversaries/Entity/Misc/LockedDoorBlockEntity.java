@@ -9,8 +9,8 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 
 public class LockedDoorBlockEntity extends BlockEntity {
 
@@ -39,7 +39,7 @@ public class LockedDoorBlockEntity extends BlockEntity {
     // --- データの保存と読み込み ---
     // ワールドが保存されるときに呼ばれる
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
+    protected void saveAdditional(@NotNull CompoundTag pTag) {
         super.saveAdditional(pTag);
         if (hasKey()) {
             pTag.put("key", this.keyStack.save(new CompoundTag()));
@@ -48,7 +48,7 @@ public class LockedDoorBlockEntity extends BlockEntity {
 
     // ワールドが読み込まれるときに呼ばれる
     @Override
-    public void load(CompoundTag pTag) {
+    public void load(@NotNull CompoundTag pTag) {
         super.load(pTag);
         if (pTag.contains("key")) {
             this.keyStack = ItemStack.of(pTag.getCompound("key"));
@@ -57,7 +57,7 @@ public class LockedDoorBlockEntity extends BlockEntity {
 
     // --- サーバーとクライアントのデータ同期 ---
     @Override
-    public CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
         saveAdditional(tag);
         return tag;

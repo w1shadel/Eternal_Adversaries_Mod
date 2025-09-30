@@ -21,4 +21,7 @@ public class FieldGeneratorManager {
     public static Stream<BlockPos> getActiveGenerators() {
         return ACTIVE_GENERATORS.stream();
     }
+    public static void clearAll() {
+        ACTIVE_GENERATORS.clear();
+    }
 }

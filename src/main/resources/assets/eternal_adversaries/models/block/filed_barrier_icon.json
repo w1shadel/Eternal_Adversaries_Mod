@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "eternal_adversaries:block/filed_barrier_icon"
+  }
+}

@@ -1,12 +1,10 @@
 package com.Maxwell.Eternal_Adversaries.Entity.Boss.A;
-import com.Maxwell.Eternal_Adversaries.Entity.Boss.AI.HurtByNearestTargetGoal;
-import net.minecraft.world.damagesource.DamageSource;
+import com.Maxwell.Eternal_Adversaries.Entity.AI.HurtByNearestTargetGoal;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;

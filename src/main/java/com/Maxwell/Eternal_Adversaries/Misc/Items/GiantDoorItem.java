@@ -1,6 +1,6 @@
 package com.Maxwell.Eternal_Adversaries.Misc.Items;
 
-import com.Maxwell.Eternal_Adversaries.Entity.Misc.GiantDoorBlockEntity;
+import com.Maxwell.Eternal_Adversaries.Misc.Blocks.GiantDoorBlock_Boss2;
 import com.Maxwell.Eternal_Adversaries.Register.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,9 +8,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class GiantDoorItem extends Item {
     private final int width;
@@ -24,61 +22,62 @@ public class GiantDoorItem extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
-        Level level = pContext.getLevel();
-        BlockPos pos = pContext.getClickedPos().relative(pContext.getClickedFace());
-        Direction facing = pContext.getHorizontalDirection();
+        // サーバーサイドでのみ処理を行う
+        if (pContext.getLevel().isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
 
-        // 3x3 (または指定されたサイズ) の設置スペースがあるかチェック
-        if (!canPlaceDoor(level, pos, facing)) {
+        Level level = pContext.getLevel();
+        BlockPos basePos = pContext.getClickedPos().relative(pContext.getClickedFace());
+        Direction facing = pContext.getHorizontalDirection(); // プレイヤーの水平な向き
+
+        // ドアを設置できるかチェックする
+        if (!canPlaceDoor(level, basePos, facing)) {
+            // (任意) プレイヤーに設置できないことを伝えるチャットメッセージなど
             return InteractionResult.FAIL;
         }
 
-        // ドアを設置
-        placeDoor(level, pos, facing);
+        // ドアを設置する
+        placeDoor(level, basePos, facing);
 
-        // アイテムを消費
-        pContext.getItemInHand().shrink(1);
-
+        // アイテムを1つ消費する
+//        pContext.getItemInHand().shrink(1);
         return InteractionResult.SUCCESS;
     }
 
+    /**
+     * 指定された範囲にドアブロックを設置するだけのシンプルなメソッド
+     */
     private void placeDoor(Level level, BlockPos basePos, Direction facing) {
-        // ★★★ マスターを中央に設定 ★★★
-        BlockPos masterPos = basePos.above(height / 2).relative(facing.getCounterClockWise(), width / 2);
+        // 全てのドアブロックで向きを統一するためのBlockStateを作成
+        BlockState doorState = ModBlocks.GIANT_DOOR.get().defaultBlockState()
+                .setValue(GiantDoorBlock_Boss2.FACING, facing);
 
-        List<BlockPos> doorPartPositions = new ArrayList<>();
+        // 指定された幅と高さでループ処理
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                // ドアの左下隅を基準に、各パーツの位置を計算する
+                BlockPos currentPos = basePos.above(y).relative(facing.getCounterClockWise(), x);
+                level.setBlock(currentPos, doorState, 3);
+            }
+        }
+        // これで設置は完了。BlockEntityのセットアップは一切不要。
+        // 全てのブロックは「マスターが未設定」の状態でワールドに配置される。
+    }
 
+    /**
+     * ドアを設置するのに十分なスペースがあるかを確認するメソッド
+     */
+    private boolean canPlaceDoor(Level level, BlockPos basePos, Direction facing) {
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
                 BlockPos currentPos = basePos.above(y).relative(facing.getCounterClockWise(), x);
-                doorPartPositions.add(currentPos);
-            }
-        }
-
-        for (BlockPos currentPos : doorPartPositions) {
-            level.setBlock(currentPos, ModBlocks.GIANT_DOOR.get().defaultBlockState(), 3);
-
-            if (level.getBlockEntity(currentPos) instanceof GiantDoorBlockEntity be) {
-                if (currentPos.equals(masterPos)) {
-                    be.setAsMaster();
-                } else {
-                    be.setMaster(masterPos);
+                // 設置先に空気や草など、上書き可能なブロック以外が存在しないかチェック
+                if (!level.getBlockState(currentPos).canBeReplaced()) {
+                    return false;
                 }
-
-                // ★★★ 階層（Tier）を設定 ★★★
-                // basePosからの相対的なY座標で判断する (0=下, 1=中, 2=上)
-                int tier = currentPos.getY() - basePos.getY();
-                be.setTier(tier);
             }
         }
-
-        if (level.getBlockEntity(masterPos) instanceof GiantDoorBlockEntity masterBE) {
-            masterBE.setDoorStructure(doorPartPositions);
-        }
-    }
-
-    private boolean canPlaceDoor(Level level, BlockPos basePos, Direction facing) {
-
         return true;
     }
 }

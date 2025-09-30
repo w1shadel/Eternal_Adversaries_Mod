@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.model.GeoModel;
+@SuppressWarnings("removal")
 @OnlyIn(Dist.CLIENT)
 public class Mettalrugic_infuser_bossModel extends GeoModel<Mettalrugic_infuser_bossMain> {
     @Override
